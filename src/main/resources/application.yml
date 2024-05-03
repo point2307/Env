@@ -1,0 +1,152 @@
+
+#JWT ??? ?? ??
+server:
+  port: 8096
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  application:
+    name: customer
+  data:
+    redis:
+      customer:
+        infoKey: customer:info
+      cluster:
+        use: false
+        nodes:
+      host: localhost
+      port: 6379
+      password:
+      dataTimeOut: 10
+      lettuce:
+        pool:
+          max-active: 50
+          max-wait: 50
+          max-idle: 50
+          min-idle: 0
+        shutdown-timeout: 100
+        timeout: 30
+    redis2:
+      cluster:
+        use: false
+        nodes:
+      host: 192.168.50.13
+      port: 6379
+      password:
+      dataTimeOut: 10
+      duplicateLifeCycleMinute: 60
+      reportLifeCycleHour: 24
+      submittedLifeCycleHour: 24
+      submittingLifeCycleHour: 24
+      lettuce:
+        pool:
+          max-active: 50
+          max-wait: 50
+          max-idle: 50
+          min-idle: 0
+        shutdown-timeout: 100
+        timeout: 30
+
+#  jpa:
+#    show_sql: true
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          auto: update
+#        format_sql: true
+
+  r2dbc:
+    pool:
+      name: TEST-POOL
+      initial-size: 3
+      max-size: 100
+      max-idle-time: 60
+
+primary:
+  datasource:
+    jdbc-url: jdbc:mariadb://localhost:3306/new_xdb
+    username: mmsmt
+    password: mmsmt
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+secondary:
+  datasource:
+    jdbc-url: jdbc:mariadb://localhost:3306/smsmt
+    host: localhost
+    port: 3306
+    database: smsmt
+    username: mmsmt
+    password: mmsmt
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        use_sql_comments: true
+        hbm2ddl:
+          auto: validate
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+
+rcsmt:
+  datasource:
+    jdbc-url: jdbc:mariadb://localhost:3306/rcsmt
+    host: localhost
+    port: 3306
+    database: rcsmt
+    username: mmsmt
+    password: mmsmt
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+        dialect: org.hibernate.dialect.MariaDBDialect
+
+
+mmsmt:
+  datasource:
+    jdbc-url: jdbc:mariadb://localhost:3306/mmsmt
+    host: localhost
+    port: 3306
+    database: mmsmt
+    username: mmsmt
+    password: mmsmt
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+
+
+# ???DB????
+#spring.datasource.url=jdbc:mariadb://localhost:7742/
+#spring.datasource.username=root
+#spring.datasource.password=1234
+#spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+
+#logging:
+#    org.hibernate.SQL: DEBUG # SQL 문을 출력
+#    org.hibernate.type.descriptor.sql: TRACE # 바인딩된 파라미터 값을 출력
+#logging:
+#  level:
+#    org.springframework.security: TRACE
+
+jwt:
+  secret: YuwAmhjpWRpr77HP1dOq0jECdZbbjzgvq5K2kTBju49kLRs7s56dVZ/MeoJW97gbuewZwuEe1W/5gbIqQaBYzw==
+  tokenValidity: 60000
+  refSecret: Lqs9ei2oAAK2NUB2sG8Rdxnmr3enYBaaXvoisQtbwb4cstworM5DHZf1jvIPXu7h1aT8dFh7Ac1bVVh+hNzzrA==
+  reftokenValidity: 86400
+
+
