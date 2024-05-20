@@ -36,6 +36,10 @@ public class MybatisConfig {
                                                 ApplicationContext applicationContext) throws Exception{
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(DataSource);
+        // 해당 부분을 통해서 카멜 -> 스네이크를 하는 것이 가능함
+        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+        configuration.setMapUnderscoreToCamelCase(true);
+
         // 밑의 항목은 인터페이스 자체 어노테이션 매퍼가 아닌
         // xml형태의 mapper을 사용할 경우 필요한 설정, xml의 위치를 지정해주면 됨
         //sqlSessionFactoryBean.setMapperLocations(applicationContext.getResource(mapperLocations));
